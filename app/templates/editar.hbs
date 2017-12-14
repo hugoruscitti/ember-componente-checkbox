@@ -1,0 +1,32 @@
+{{outlet}}
+
+{{#validated-form
+  model = (changeset model)
+  on-submit = (action "guardar")
+  as |f|}}
+
+  {{f.input label="Nombre del juego" name="nombre"}}
+
+  {{#f.input label="Generos:" name="generos" as |fi|}}
+
+    {{multiselect-checkboxes
+        options=model.listado_de_generos
+        labelProperty='nombre'
+        selection=fi.value
+        onchange=fi.update}}
+
+  {{/f.input}}
+
+  {{f.input
+      type     = "select"
+      label    = "Empresa desarrolladora"
+      name     = "empresa"
+      optionValuePath="id"
+      optionLabelPath = "nombre"
+      options  = model.listado_de_empresas
+      value    = f.empresa
+  }}
+
+  {{f.submit label="Guardar" class='f6 link dim br1 ba ph3 pv2 mb2 dib white bg-dark-blue pointer'}}
+
+{{/validated-form}}

@@ -1,0 +1,17 @@
+{{outlet}}
+
+<h1>Juegos</h1>
+
+{{#each model as |juego|}}
+  <div>
+    {{juego.nombre}} <span class='green'>(de {{juego.empresa.nombre}})</span>
+
+    {{#each juego.generos as |genero|}}
+      <span class="f6 link dim br-pill pa1 mb1 dib white bg-mid-gray">{{genero.nombre}}</span>
+    {{else}}
+      <span class='orange'>Sin generos</span>
+    {{/each}}
+
+    {{#link-to "editar" juego class="ml4 f6 link dim br1 pa1 ph2 ba mb2 dib white bg-dark-blue pointer"}}Editar{{/link-to}}
+  </div>
+{{/each}}
